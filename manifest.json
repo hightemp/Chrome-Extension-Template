@@ -16,7 +16,7 @@
             "19": "images/icon_19.png",
             "38": "images/icon_38.png"
         },
-        "default_popup": "html/main.html"
+        "default_popup": "html/default_popup.html"
     },
 
 		"permissions": [
@@ -25,12 +25,24 @@
 		],
 
 		"background": {
-		    "scripts": ["js/background.js"]
+		    "scripts": ["js/background.js"],
+		    "page": "background.html"
 		},
 
 		"content_scripts": [
+			{
+	      "matches": ["chrome-extension://*/*"],
+	      "css": ["css/bootstrap.min.css", "css/default.css"],
+	      "js": ["js/jquery-1.9.1.min.js", "js/bootstrap.min.js"],
+	      "run_at": "document_start"	
+			},
+			{
+	      "matches": ["http://*/*", "https://*/*"],
+	      "js": ["js/document_start.js"],
+	      "run_at": "document_end"
+	    }
 		],
 
-    "options_page": "html/options.html",
+    "options_page": "html/options_page.html",
     "homepage_url": "http://yourdomainhere.com/"
 }
